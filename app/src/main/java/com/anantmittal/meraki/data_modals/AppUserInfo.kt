@@ -1,4 +1,4 @@
-package com.anantmittal.meraki
+package com.anantmittal.meraki.data_modals
 
 const val refUrl = "https://meraki-1b27e-default-rtdb.europe-west1.firebasedatabase.app/"
 

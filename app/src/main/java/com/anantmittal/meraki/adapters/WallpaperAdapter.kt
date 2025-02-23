@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.anantmittal.meraki.R
-import com.anantmittal.meraki.WallpaperDataItem
+import com.anantmittal.meraki.api.api_data_modals.WallpaperDataItem
 import com.bumptech.glide.Glide
 
 class WallpaperAdapter(

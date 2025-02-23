@@ -1,4 +1,4 @@
-package com.anantmittal.meraki
+package com.anantmittal.meraki.api.api_data_modals
 
 data class User(
     val accepted_tos: Boolean,

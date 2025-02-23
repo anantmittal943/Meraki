@@ -14,12 +14,12 @@ import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.anantmittal.meraki.OwnerData
+import com.anantmittal.meraki.data_modals.OwnerData
 import com.anantmittal.meraki.R
-import com.anantmittal.meraki.RetrofitBuilder
+import com.anantmittal.meraki.api.RetrofitBuilder
 import com.anantmittal.meraki.adapters.WallpaperAdapter
-import com.anantmittal.meraki.WallpaperData
-import com.anantmittal.meraki.WallpaperDataItem
+import com.anantmittal.meraki.api.api_data_modals.WallpaperData
+import com.anantmittal.meraki.api.api_data_modals.WallpaperDataItem
 import com.anantmittal.meraki.databinding.FragmentWallpapersBinding
 import retrofit2.Call
 import retrofit2.Callback

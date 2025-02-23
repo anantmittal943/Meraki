@@ -16,10 +16,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.FileProvider
-import com.anantmittal.meraki.OwnerData
+import com.anantmittal.meraki.data_modals.OwnerData
 import com.anantmittal.meraki.R
 import com.anantmittal.meraki.databinding.FragmentSetWallpaperBinding
-import com.anantmittal.meraki.refUrl
+import com.anantmittal.meraki.data_modals.refUrl
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
