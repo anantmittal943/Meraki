@@ -42,9 +42,6 @@ class SetWallpaper : Fragment() {
     private lateinit var database: FirebaseDatabase
     private lateinit var downDatabaseReference: DatabaseReference
     private lateinit var favDatabaseReference: DatabaseReference
-    /*private var photoUrl: String? = null
-    private var ownerUsername: String? = null
-    private var ownerProfileUrl: String? = null*/
     val TAG = "xyz"
     private lateinit var ownerData: OwnerData
 
@@ -60,7 +57,7 @@ class SetWallpaper : Fragment() {
 
 
         ownerData = arguments?.getSerializable("data") as OwnerData
-        Log.d(TAG, "onCreateView: ${ownerData.uri} ${ownerData.ownerUserName} ${ownerData.ownerUserName}")
+//        Log.d(TAG, "onCreateView: ${ownerData.uri} ${ownerData.ownerUserName} ${ownerData.ownerProfileUrl}")
 //        ownerUsername = arguments?.getString("ownerUsername")
 //        val ownerName = arguments?.getString("ownerName", "Unknown")
 //        ownerProfileUrl = arguments?.getString("ownerProfileUrl")
@@ -108,7 +105,9 @@ class SetWallpaper : Fragment() {
         favDatabaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (data in snapshot.children) {
-                    if (ownerData.uri.toString() == data.child("link").getValue(String::class.java)) {
+                    if (ownerData.uri.toString() == data.child("link")
+                            .getValue(String::class.java)
+                    ) {
                         isFav = data.child("isFav").getValue(Boolean::class.java) ?: false
                         favKey = data.key
                         break
@@ -134,8 +133,10 @@ class SetWallpaper : Fragment() {
                 }
                 favKey?.let {
                     favDatabaseReference.child(it).child("link").setValue(ownerData.uri.toString())
-                    favDatabaseReference.child(it).child("ownerUsername").setValue(ownerData.ownerUserName)
-                    favDatabaseReference.child(it).child("ownerProfileUrl").setValue(ownerData.ownerProfileUrl)
+                    favDatabaseReference.child(it).child("ownerUsername")
+                        .setValue(ownerData.ownerUserName)
+                    favDatabaseReference.child(it).child("ownerProfileUrl")
+                        .setValue(ownerData.ownerProfileUrl)
                     favDatabaseReference.child(it).child("isFav").setValue(isFav)
                 }
             } else {
@@ -228,8 +229,10 @@ class SetWallpaper : Fragment() {
             val wallpaperDownloadKey = downDatabaseReference.push().key
             if (wallpaperDownloadKey != null) {
                 downDatabaseReference.child(wallpaperDownloadKey).child("link").setValue(it)
-                downDatabaseReference.child(wallpaperDownloadKey).child("ownerUsername").setValue(ownerData.ownerUserName)
-                downDatabaseReference.child(wallpaperDownloadKey).child("ownerProfileUrl").setValue(ownerData.ownerProfileUrl)
+                downDatabaseReference.child(wallpaperDownloadKey).child("ownerUsername")
+                    .setValue(ownerData.ownerUserName)
+                downDatabaseReference.child(wallpaperDownloadKey).child("ownerProfileUrl")
+                    .setValue(ownerData.ownerProfileUrl)
             }
         }
     }

@@ -56,10 +56,6 @@ class Wallpapers : Fragment() {
             list.add(ownerData)
             val bundle = Bundle().apply {
                 putSerializable("data", ownerData)
-//                putString("photoUrl", data.urls.raw)
-//                putString("ownerUsername",data.user.username)
-//                putString("ownerName",data.user.name)
-//                putString("ownerProfileUrl",data.user.profile_image.large)
             }
             findNavController().navigate(R.id.action_wallP_to_setWallpaper, bundle)
         }
