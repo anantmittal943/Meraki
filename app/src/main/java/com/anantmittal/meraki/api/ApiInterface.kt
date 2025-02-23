@@ -1,5 +1,7 @@
-package com.anantmittal.meraki
+package com.anantmittal.meraki.api
 
+import com.anantmittal.meraki.api.api_data_modals.WallpaperData
+import com.anantmittal.meraki.api.api_data_modals.WallpaperDataItem
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Headers

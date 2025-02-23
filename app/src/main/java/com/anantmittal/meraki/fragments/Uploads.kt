@@ -14,8 +14,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.anantmittal.meraki.adapters.ImageAdapter
 import com.anantmittal.meraki.R
 import com.anantmittal.meraki.databinding.FragmentUploadsBinding
-import com.anantmittal.meraki.OwnerData
-import com.anantmittal.meraki.refUrl
+import com.anantmittal.meraki.data_modals.OwnerData
+import com.anantmittal.meraki.data_modals.refUrl
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError

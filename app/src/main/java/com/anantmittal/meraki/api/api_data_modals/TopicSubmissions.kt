@@ -1,4 +1,4 @@
-package com.anantmittal.meraki
+package com.anantmittal.meraki.api.api_data_modals
 
 data class TopicSubmissions(
     val `3d-renders`: DRenders,
@@ -7,4 +7,4 @@ data class TopicSubmissions(
 //    val fashion-beauty: FashionBeauty,
     val nature: Nature,
 
-)
+    )

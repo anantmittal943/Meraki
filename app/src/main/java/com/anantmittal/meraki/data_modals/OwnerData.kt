@@ -1,4 +1,4 @@
-package com.anantmittal.meraki
+package com.anantmittal.meraki.data_modals
 
 import android.net.Uri
 import java.io.Serializable

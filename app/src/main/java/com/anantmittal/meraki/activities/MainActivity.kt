@@ -1,13 +1,11 @@
-package com.anantmittal.meraki
+package com.anantmittal.meraki.activities
 
 import android.os.Bundle
-import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupWithNavController
+import com.anantmittal.meraki.R
 import com.anantmittal.meraki.databinding.ActivityMainBinding
 
 const val TAG = "xyz"

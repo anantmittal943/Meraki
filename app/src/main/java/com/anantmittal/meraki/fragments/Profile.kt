@@ -9,8 +9,7 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.anantmittal.meraki.R
 import com.anantmittal.meraki.databinding.FragmentProfileBinding
-import com.anantmittal.meraki.databinding.FragmentWallpapersBinding
-import com.anantmittal.meraki.refUrl
+import com.anantmittal.meraki.data_modals.refUrl
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError

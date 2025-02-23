@@ -1,4 +1,4 @@
-package com.anantmittal.meraki
+package com.anantmittal.meraki.api
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
