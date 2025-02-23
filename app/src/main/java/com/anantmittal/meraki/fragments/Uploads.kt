@@ -11,7 +11,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.anantmittal.meraki.ImageAdapter
+import com.anantmittal.meraki.adapters.ImageAdapter
 import com.anantmittal.meraki.R
 import com.anantmittal.meraki.databinding.FragmentUploadsBinding
 import com.anantmittal.meraki.OwnerData

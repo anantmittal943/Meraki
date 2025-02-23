@@ -1,10 +1,12 @@
-package com.anantmittal.meraki
+package com.anantmittal.meraki.adapters
 
 import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.anantmittal.meraki.OwnerData
+import com.anantmittal.meraki.TAG
 import com.anantmittal.meraki.databinding.WallpaperLayoutBinding
 import com.bumptech.glide.Glide
 

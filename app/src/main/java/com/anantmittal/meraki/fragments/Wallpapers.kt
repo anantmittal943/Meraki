@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.anantmittal.meraki.OwnerData
 import com.anantmittal.meraki.R
 import com.anantmittal.meraki.RetrofitBuilder
-import com.anantmittal.meraki.WallpaperAdapter
+import com.anantmittal.meraki.adapters.WallpaperAdapter
 import com.anantmittal.meraki.WallpaperData
 import com.anantmittal.meraki.WallpaperDataItem
 import com.anantmittal.meraki.databinding.FragmentWallpapersBinding

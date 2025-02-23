@@ -1,4 +1,4 @@
-package com.anantmittal.meraki
+package com.anantmittal.meraki.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
+import com.anantmittal.meraki.R
+import com.anantmittal.meraki.WallpaperDataItem
 import com.bumptech.glide.Glide
 
 class WallpaperAdapter(
@@ -15,12 +17,12 @@ class WallpaperAdapter(
 ) :
     RecyclerView.Adapter<WallpaperAdapter.WallpaperViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WallpaperAdapter.WallpaperViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WallpaperViewHolder {
         val inflater = LayoutInflater.from(context).inflate(R.layout.wallpaper_layout,parent,false)
         return WallpaperViewHolder(inflater)
     }
 
-    override fun onBindViewHolder(holder: WallpaperAdapter.WallpaperViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: WallpaperViewHolder, position: Int) {
         val wallPos = wallpaperList[position]
 //        Log.d(TAG, "onBindViewHolder: $position")
         Glide.with(context)
