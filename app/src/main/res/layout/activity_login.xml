@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/charcoal"
+    tools:context=".LoginActivity">
+
+    <ImageView
+        android:id="@+id/curved_shape"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/curved_shape_login"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".65"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/login_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="58dp"
+        android:fontFamily="@font/instrumentserifregular"
+        android:text="Login"
+        android:textColor="@color/black"
+        android:textSize="80sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/curved_shape" />
+
+    <EditText
+        android:id="@+id/email_input"
+        android:layout_width="352dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/rounded_corners"
+        android:fontFamily="@font/dominevariablefontwght"
+        android:hint="Email ID"
+        android:inputType="textEmailAddress"
+        android:padding="12dp"
+        android:textColor="@color/black"
+        android:textColorHighlight="@color/gold"
+        android:textColorHint="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/login_title" />
+
+    <EditText
+        android:id="@+id/password_input"
+        android:layout_width="352dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/rounded_corners"
+        android:fontFamily="@font/dominevariablefontwght"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:padding="12dp"
+        android:textColor="@color/black"
+        android:textColorHighlight="@color/gold"
+        android:textColorHint="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/email_input" />
+
+    <!--work on ui of this-->
+    <LinearLayout
+        android:id="@+id/remember_forgot"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginHorizontal="22dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/password_input">
+
+        <CheckBox
+            android:id="@+id/remember_me"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/black"
+            android:fontFamily="@font/leaguespartanregular"
+            android:text="Remember me"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!--work on forgot password-->
+        <TextView
+            android:id="@+id/forgot_pass"
+            android:layout_width="wrap_content"
+            android:layout_height="52dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/leaguespartanregular"
+            android:gravity="center"
+            android:text="I forgot my password"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/continue_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/charcoal"
+        android:fontFamily="@font/aidatrialsilktypelight"
+        android:text="Continue"
+        android:textColor="@color/cream"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/remember_forgot" />
+
+    <!--work on ui of this-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/continue_button">
+
+        <TextView
+            android:id="@+id/no_account_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/leaguespartanregular"
+            android:text="Didn't have any account?"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/signup_text"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="8dp"
+            android:layout_toEndOf="@id/no_account_text"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/leaguespartanregular"
+            android:text="SignUp"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph.xml"
+    app:startDestination="@id/wallP">
+
+    <fragment
+        android:id="@+id/wallP"
+        android:name="com.anantmittal.meraki.fragments.Wallpapers"
+        android:label="fragment_wallpapers"
+        tools:layout="@layout/fragment_wallpapers">
+        <action
+            android:id="@+id/action_wallP_to_setWallpaper"
+            app:destination="@id/setWallpaper" />
+        <action
+            android:id="@+id/action_wallP_to_profile"
+            app:destination="@id/profile" />
+    </fragment>
+    <fragment
+        android:id="@+id/profile"
+        android:name="com.anantmittal.meraki.fragments.Profile"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profile_to_uploads2"
+            app:destination="@id/uploads2" />
+        <action
+            android:id="@+id/action_profile_to_downloads2"
+            app:destination="@id/downloads2" />
+        <action
+            android:id="@+id/action_profile_to_termsAndCondition"
+            app:destination="@id/termsAndCondition" />
+        <action
+            android:id="@+id/action_profile_to_privacyPolicy"
+            app:destination="@id/privacyPolicy" />
+        <action
+            android:id="@+id/action_profile_to_favourites"
+            app:destination="@id/favourites" />
+    </fragment>
+    <fragment
+        android:id="@+id/setWallpaper"
+        android:name="com.anantmittal.meraki.fragments.SetWallpaper"
+        android:label="fragment_set_wallpaper"
+        tools:layout="@layout/fragment_set_wallpaper">
+        <!--<argument
+            android:name="photoUrl"
+            app:argType="string" />-->
+    </fragment>
+    <fragment
+        android:id="@+id/uploads2"
+        android:name="com.anantmittal.meraki.fragments.Uploads"
+        android:label="fragment_uploads"
+        tools:layout="@layout/fragment_uploads">
+        <action
+            android:id="@+id/action_uploads2_to_setWallpaper"
+            app:destination="@id/setWallpaper" />
+    </fragment>
+    <fragment
+        android:id="@+id/downloads2"
+        android:name="com.anantmittal.meraki.fragments.Downloads"
+        android:label="fragment_downloads"
+        tools:layout="@layout/fragment_downloads" >
+        <action
+            android:id="@+id/action_downloads2_to_setWallpaper"
+            app:destination="@id/setWallpaper" />
+    </fragment>
+    <fragment
+        android:id="@+id/termsAndCondition"
+        android:name="com.anantmittal.meraki.fragments.TermsAndCondition"
+        android:label="fragment_terms_and_condition"
+        tools:layout="@layout/fragment_terms_and_condition" />
+    <fragment
+        android:id="@+id/privacyPolicy"
+        android:name="com.anantmittal.meraki.fragments.PrivacyPolicy"
+        android:label="fragment_privacy_policy"
+        tools:layout="@layout/fragment_privacy_policy" />
+    <fragment
+        android:id="@+id/favourites"
+        android:name="com.anantmittal.meraki.fragments.Favourites"
+        android:label="fragment_favourites"
+        tools:layout="@layout/fragment_favourites" >
+        <action
+            android:id="@+id/action_favourites_to_setWallpaper"
+            app:destination="@id/setWallpaper" />
+    </fragment>
+</navigation>
