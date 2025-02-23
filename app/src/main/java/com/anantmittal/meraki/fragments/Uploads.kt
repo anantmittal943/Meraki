@@ -33,7 +33,6 @@ class Uploads : Fragment() {
     private val profileImages = mutableListOf<String>()
     private var ownerUsername: String = ""
     private var profileImagesUrl: String = "https://i.pinimg.com/736x/c0/74/9b/c0749b7cc401421662ae901ec8f9f660.jpg"
-//    val profileImages: MutableList<String> = mutableListOf()
     private val list = mutableListOf<OwnerData>()
     private lateinit var imageAdapter: ImageAdapter
     private lateinit var firebaseAuth: FirebaseAuth
@@ -64,9 +63,6 @@ class Uploads : Fragment() {
                 if (!uris.isNullOrEmpty()) {
                     for (uri in uris) {
                         list.add(OwnerData(uri, "ownerUsername", "profileImagesUrl"))
-                        /*imageUris.add(uri)
-                        ownerNames.add("ownerUsername")
-                        profileImages.add("profileImagesUrl")*/
                         updateWallpaperToDatabase(uri)
                     }
                     imageAdapter.notifyDataSetChanged()

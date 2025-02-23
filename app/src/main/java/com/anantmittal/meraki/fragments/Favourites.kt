@@ -30,9 +30,6 @@ class Favourites : Fragment() {
     private lateinit var databaseReference: DatabaseReference
     private lateinit var imageAdapter: ImageAdapter
     private val list = mutableListOf<OwnerData>()
-    private val imageUris = mutableListOf<Uri>()
-    private val ownerNames = mutableListOf<String>()
-    private val profileImages = mutableListOf<String>()
     val TAG = "xyz"
 
 
@@ -68,10 +65,7 @@ class Favourites : Fragment() {
                     val ownerProfileUrl = data.child("ownerProfileUrl").getValue(String::class.java)
                     Log.d(TAG, "onDataChange:$imageUrl $ownerUsername $ownerProfileUrl ")
                     if (imageUrl != null && ownerUsername != null && ownerProfileUrl != null) {
-                        /*imageUris.add(Uri.parse(imageUrl))
-                        ownerNames.add(ownerUsername)
-                        profileImages.add(ownerProfileUrl)*/
-                        list.add(OwnerData(Uri.parse(imageUrl), "ownerUsername", "profileImagesUrl"))
+                        list.add(OwnerData(Uri.parse(imageUrl), ownerUsername, ownerProfileUrl))
                     }
                 }
 

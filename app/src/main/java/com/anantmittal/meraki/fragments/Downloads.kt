@@ -29,9 +29,6 @@ class Downloads : Fragment() {
     private lateinit var databaseReference: DatabaseReference
     private lateinit var imageAdapter: ImageAdapter
     private val list = mutableListOf<OwnerData>()
-    private val imageUris = mutableListOf<Uri>()
-    private val ownerNames = mutableListOf<String>()
-    private val profileImages = mutableListOf<String>()
     val TAG = "xyz"
 
     override fun onCreateView(
@@ -64,7 +61,7 @@ class Downloads : Fragment() {
                     val ownerUsername = data.child("ownerUsername").getValue(String::class.java)
                     val ownerProfileUrl = data.child("ownerProfileUrl").getValue(String::class.java)
                     if (imageUrl != null && ownerUsername != null && ownerProfileUrl != null) {
-                        list.add(OwnerData(Uri.parse(imageUrl), "ownerUsername", "profileImagesUrl"))
+                        list.add(OwnerData(Uri.parse(imageUrl), ownerUsername, ownerProfileUrl))
                     }
                 }
                 imageAdapter.notifyDataSetChanged()
