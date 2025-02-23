@@ -1,6 +1,7 @@
 package com.anantmittal.meraki.fragments
 
 import android.content.Context
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,8 +13,8 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.anantmittal.meraki.OwnerData
 import com.anantmittal.meraki.R
 import com.anantmittal.meraki.RetrofitBuilder
 import com.anantmittal.meraki.WallpaperAdapter
@@ -30,6 +31,7 @@ class Wallpapers : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var wallpaperAdapter: WallpaperAdapter
     private val wallpaperList = mutableListOf<WallpaperDataItem>()
+    private val list = mutableListOf<OwnerData>()
     private var currentPage = 1
     private var isSearching = false
     private var isLoading = false
@@ -48,11 +50,16 @@ class Wallpapers : Fragment() {
         recyclerView = binding.recyclerView
         recyclerView.layoutManager = GridLayoutManager(context, 3)
         wallpaperAdapter = WallpaperAdapter(requireContext(), wallpaperList) { data ->
+            val ownerData = OwnerData(
+                Uri.parse(data.urls.raw), data.user.username, data.user.profile_image.large
+            )
+            list.add(ownerData)
             val bundle = Bundle().apply {
-                putString("photoUrl", data.urls.raw)
-                putString("ownerUsername",data.user.username)
+                putSerializable("data", ownerData)
+//                putString("photoUrl", data.urls.raw)
+//                putString("ownerUsername",data.user.username)
 //                putString("ownerName",data.user.name)
-                putString("ownerProfileUrl",data.user.profile_image.large)
+//                putString("ownerProfileUrl",data.user.profile_image.large)
             }
             findNavController().navigate(R.id.action_wallP_to_setWallpaper, bundle)
         }
@@ -63,7 +70,8 @@ class Wallpapers : Fragment() {
 
         fetchWallpapers(currentPage)
 
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,
+        requireActivity().onBackPressedDispatcher.addCallback(
+            viewLifecycleOwner,
             object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
                     if (isSearching) {
