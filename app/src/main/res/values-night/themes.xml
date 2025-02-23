@@ -1,0 +1,14 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Meraki" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your dark theme here. -->
+        <item name="colorPrimary">@color/charcoal</item>
+        <item name="colorSecondary">@color/charcoal</item>
+    </style>
+
+    <style name="Theme.Meraki" parent="Base.Theme.Meraki" />
+
+    <style name="Theme.Meraki.Splash" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@color/charcoal</item>
+    </style>
+</resources>

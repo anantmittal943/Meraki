@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.Profile">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/linear_gradient1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="52dp"
+                android:backgroundTint="@color/cream"
+                app:cardCornerRadius="100dp"
+                app:cardElevation="16dp"
+                app:cardMaxElevation="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/profile" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <TextView
+                android:id="@+id/first"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/instrumentserifregular"
+                android:scaleY="0.8"
+                android:textColor="@color/cream"
+                android:textSize="48sp"
+                app:layout_constraintStart_toStartOf="@id/materialCardView"
+                app:layout_constraintTop_toBottomOf="@id/materialCardView" />
+
+            <TextView
+                android:id="@+id/last"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/instrumentserifregular"
+                android:scaleY="0.8"
+                android:textColor="@color/cream"
+                android:textSize="48sp"
+                app:layout_constraintStart_toEndOf="@+id/first"
+                app:layout_constraintTop_toTopOf="@+id/first" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="64dp"
+                android:backgroundTint="@color/charcoal"
+                app:cardCornerRadius="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/first">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/linear_gradient2" />
+
+                <Button
+                    android:id="@+id/uploads"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/gfsdidotregular"
+                    android:text="Uploads"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/cream"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/downloads"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="71dp"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/gfsdidotregular"
+                    android:text="Downloads"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/cream"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/favourite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="126dp"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/gfsdidotregular"
+                    android:text="Favourites"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/cream"
+                    android:textSize="16sp" />
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="64dp"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/charcoal"
+                app:cardCornerRadius="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/linear_gradient3" />
+
+                <Button
+                    android:id="@+id/terms_condition"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/gfsdidotregular"
+                    android:text="Terms and Condition"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/cream"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:id="@+id/privacy_policy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="63dp"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/gfsdidotregular"
+                    android:text="Privacy Policy"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/cream"
+                    android:textSize="16sp" />
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</FrameLayout>

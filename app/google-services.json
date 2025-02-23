@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "402848379816",
+    "project_id": "meraki-1b27e",
+    "storage_bucket": "meraki-1b27e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:402848379816:android:aa1e5470630ab7e118239d",
+        "android_client_info": {
+          "package_name": "com.anantmittal.meraki"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "***REMOVED***"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
