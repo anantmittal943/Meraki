@@ -60,6 +60,7 @@ class SetWallpaper : Fragment() {
 
 
         ownerData = arguments?.getSerializable("data") as OwnerData
+        Log.d(TAG, "onCreateView: ${ownerData.uri} ${ownerData.ownerUserName} ${ownerData.ownerUserName}")
 //        ownerUsername = arguments?.getString("ownerUsername")
 //        val ownerName = arguments?.getString("ownerName", "Unknown")
 //        ownerProfileUrl = arguments?.getString("ownerProfileUrl")
