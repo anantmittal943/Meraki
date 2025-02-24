@@ -48,7 +48,7 @@ class Wallpapers : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recyclerView = binding.recyclerView
-        recyclerView.layoutManager = GridLayoutManager(context, 2)
+        recyclerView.layoutManager = GridLayoutManager(context, 3)
         wallpaperAdapter = WallpaperAdapter(requireContext(), wallpaperList) { data ->
             val ownerData = OwnerData(
                 Uri.parse(data.urls.raw), data.user.username, data.user.profile_image.large
