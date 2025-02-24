@@ -12,7 +12,7 @@
     <ImageView
         android:id="@+id/wall1"
         android:layout_width="match_parent"
-        android:layout_height="232dp"
+        android:layout_height="match_parent"
         android:scaleType="centerCrop"
         android:src="@drawable/image" />
 
