@@ -23,6 +23,8 @@ android {
         properties.load(project.rootProject.file("local.properties").inputStream())
         val clientId = properties.getProperty("client_id")
         buildConfigField("String", "client_id", clientId)
+        val currentKey = properties.getProperty("current_key")
+        buildConfigField("String", "current_key", currentKey)
 
     }
 
