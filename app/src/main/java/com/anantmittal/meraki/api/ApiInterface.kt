@@ -1,5 +1,6 @@
 package com.anantmittal.meraki.api
 
+import com.anantmittal.meraki.BuildConfig
 import com.anantmittal.meraki.api.api_data_modals.WallpaperData
 import com.anantmittal.meraki.api.api_data_modals.WallpaperDataItem
 import retrofit2.Call
@@ -9,7 +10,7 @@ import retrofit2.http.Query
 
 //https://api.unsplash.com/photos?client_id=F_S8mDPxMVJX4n4ohON-yDbyXZt9pKYP8Re923IpvEE&page=1
 const val BASE_URL = "https://api.unsplash.com/"
-const val client_id = "F_S8mDPxMVJX4n4ohON-yDbyXZt9pKYP8Re923IpvEE"
+const val client_id = BuildConfig.client_id
 
 interface ApiInterface {
     @Headers("Authorization: Client-ID $client_id")
