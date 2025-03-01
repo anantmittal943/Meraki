@@ -26,8 +26,8 @@ class MerakiApp : Application() {
         if (FirebaseApp.getApps(this).isEmpty()) {
             FirebaseApp.initializeApp(this, options)
             Log.d(TAG, "onCreate: firebase initialized successfully")
-        } /*else {
+        } else {
             Log.d(TAG, "onCreate: not")
-        }*/
+        }
     }
 }

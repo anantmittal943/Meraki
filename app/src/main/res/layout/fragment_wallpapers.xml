@@ -17,7 +17,7 @@
             android:layout_height="0dp"
             app:cardBackgroundColor="@color/charcoal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.1"
+            app:layout_constraintHeight_percent="0.07"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -27,28 +27,42 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <!--<carbon.widget.EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/cream"
+                    android:hint="Search..."
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:padding="8dp"
+                    app:carbon_cornerRadius="8dp"
+                    android:textColor="@color/charcoal"
+                    />-->
+
+                <carbon.widget.EditText
                     android:id="@+id/search_wallpaper"
                     android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_margin="8dp"
+                    android:layout_height="42dp"
+                    android:layout_margin="16dp"
                     android:layout_weight="1"
-                    android:background="@drawable/rounded_corners"
-                    android:backgroundTint="@color/cream"
-                    android:fontFamily="@font/dominevariablefontwght"
+                    android:background="@color/cream"
+                    android:fontFamily="@font/leaguespartanregular"
                     android:hint="Search..."
                     android:imeOptions="actionSearch"
                     android:inputType="text"
                     android:maxLines="1"
                     android:padding="8dp"
                     android:textColor="@color/charcoal"
-                    android:textColorHint="@color/charcoal" />
+                    android:textColorHint="@color/charcoal"
+                    app:carbon_backgroundTint="@color/cream"
+                    app:carbon_cornerRadius="8dp" />
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/materialCardView"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_margin="8dp"
+                    android:layout_width="42dp"
+                    android:layout_height="42dp"
+                    android:layout_marginEnd="16dp"
                     android:backgroundTint="@color/cream"
                     app:cardCornerRadius="100dp"
                     app:cardElevation="16dp"
@@ -59,6 +73,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:clickable="true"
+                        android:layout_margin="4dp"
                         android:contentDescription="go to profile section"
                         android:focusable="true"
                         android:scaleType="centerCrop"
@@ -72,13 +87,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:text="Newly Added"
-            android:textSize="24sp"
-            android:textColor="@color/tan"
             android:fontFamily="@font/leaguespartanregular"
+            android:text="Newly Added"
+            android:textColor="@color/tan"
+            android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/card"/>
+            app:layout_constraintTop_toBottomOf="@id/card" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
