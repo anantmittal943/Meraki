@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_wallP_to_profile"
             app:destination="@id/profile" />
+        <action
+            android:id="@+id/action_wallP_to_searchResults"
+            app:destination="@id/searchResults" />
     </fragment>
     <fragment
         android:id="@+id/profile"
@@ -84,4 +87,9 @@
             android:id="@+id/action_favourites_to_setWallpaper"
             app:destination="@id/setWallpaper" />
     </fragment>
+    <fragment
+        android:id="@+id/searchResults"
+        android:name="com.anantmittal.meraki.fragments.SearchResults"
+        android:label="fragment_search_results"
+        tools:layout="@layout/fragment_search_results" />
 </navigation>
