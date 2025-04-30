@@ -67,8 +67,7 @@ class Wallpapers : Fragment() {
         fetchWallpapers(currentPage)
 
         requireActivity().onBackPressedDispatcher.addCallback(
-            viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
+            viewLifecycleOwner, object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
                     if (isSearching) {
                         isSearching = false

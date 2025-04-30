@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/wallpapers"
@@ -7,277 +7,252 @@
     android:layout_height="match_parent"
     tools:context=".fragments.Wallpapers">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <com.google.android.material.card.MaterialCardView
+        <carbon.widget.LinearLayout
             android:id="@+id/card"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:cardBackgroundColor="@color/charcoal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_percent="0.07"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_scrollFlags="scroll|enterAlways">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="horizontal">
+            <carbon.widget.EditText
+                android:id="@+id/search_wallpaper"
+                android:layout_width="0dp"
+                android:layout_height="42dp"
+                android:layout_margin="16dp"
+                android:layout_weight="1"
+                android:background="@color/cream"
+                android:fontFamily="@font/leaguespartanregular"
+                android:hint="Search..."
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:maxLines="1"
+                android:padding="8dp"
+                android:textColor="@color/charcoal"
+                android:textColorHint="@color/charcoal"
+                app:carbon_backgroundTint="@color/cream"
+                app:carbon_cornerRadius="8dp" />
 
-                <!--<carbon.widget.EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/cream"
-                    android:hint="Search..."
-                    android:imeOptions="actionSearch"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:padding="8dp"
-                    app:carbon_cornerRadius="8dp"
-                    android:textColor="@color/charcoal"
-                    />-->
+            <carbon.widget.ImageView
+                android:id="@+id/profile_picture"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/cream"
+                android:padding="4dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/profile"
+                app:carbon_cornerRadius="100dp"
+                app:carbon_elevation="16dp"
+                app:carbon_tint="@color/black" />
+        </carbon.widget.LinearLayout>
 
-                <carbon.widget.EditText
-                    android:id="@+id/search_wallpaper"
-                    android:layout_width="0dp"
-                    android:layout_height="42dp"
-                    android:layout_margin="16dp"
-                    android:layout_weight="1"
-                    android:background="@color/cream"
-                    android:fontFamily="@font/leaguespartanregular"
-                    android:hint="Search..."
-                    android:imeOptions="actionSearch"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:padding="8dp"
-                    android:textColor="@color/charcoal"
-                    android:textColorHint="@color/charcoal"
-                    app:carbon_backgroundTint="@color/cream"
-                    app:carbon_cornerRadius="8dp" />
+    </com.google.android.material.appbar.AppBarLayout>
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/materialCardView"
-                    android:layout_width="42dp"
-                    android:layout_height="42dp"
-                    android:layout_marginEnd="16dp"
-                    android:backgroundTint="@color/cream"
-                    app:cardCornerRadius="100dp"
-                    app:cardElevation="16dp"
-                    app:cardMaxElevation="20dp">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-                    <ImageView
-                        android:id="@+id/profile_picture"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="4dp"
-                        android:clickable="true"
-                        android:contentDescription="go to profile section"
-                        android:focusable="true"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/profile" />
-                </com.google.android.material.card.MaterialCardView>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <TextView
-            android:id="@+id/featured"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:fontFamily="@font/leaguespartanregular"
-            android:text="Featured"
-            android:textColor="@color/tan"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/card" />
-
-        <HorizontalScrollView
-            android:id="@+id/scroll"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:fillViewport="true"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/featured">
+            android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/featured"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingStart="16dp"
-                android:paddingEnd="8dp">
+                android:layout_margin="16dp"
+                android:fontFamily="@font/leaguespartanregular"
+                android:text="Featured"
+                android:textColor="@color/tan"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/countrySide"
-                    android:layout_width="150dp"
-                    android:layout_height="100dp"
-                    android:layout_marginEnd="8dp"
-                    android:backgroundTint="@color/cream"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:cardCornerRadius="8dp">
+            <HorizontalScrollView
+                android:id="@+id/scroll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fillViewport="true"
+                android:nestedScrollingEnabled="true">
 
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/countryside" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="8dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom|start"
-                        android:layout_margin="4dp"
-                        android:fontFamily="@font/leaguespartanregular"
-                        android:text="Countryside"
-                        android:textColor="@color/cream"
-                        android:textStyle="bold" />
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/countrySide"
+                        android:layout_width="150dp"
+                        android:layout_height="100dp"
+                        android:layout_marginEnd="8dp"
+                        android:backgroundTint="@color/cream"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:cardCornerRadius="8dp">
 
-                </com.google.android.material.card.MaterialCardView>
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/countryside" />
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/nightEscape"
-                    android:layout_width="150dp"
-                    android:layout_height="100dp"
-                    android:layout_marginEnd="8dp"
-                    android:backgroundTint="@color/cream"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:cardCornerRadius="8dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|start"
+                            android:layout_margin="4dp"
+                            android:fontFamily="@font/leaguespartanregular"
+                            android:text="Countryside"
+                            android:textColor="@color/cream"
+                            android:textStyle="bold" />
 
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/nightcitylightsstreet4kca" />
+                    </com.google.android.material.card.MaterialCardView>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom|start"
-                        android:layout_margin="4dp"
-                        android:fontFamily="@font/leaguespartanregular"
-                        android:text="Night Escape"
-                        android:textColor="@color/cream"
-                        android:textStyle="bold" />
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/nightEscape"
+                        android:layout_width="150dp"
+                        android:layout_height="100dp"
+                        android:layout_marginEnd="8dp"
+                        android:backgroundTint="@color/cream"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:cardCornerRadius="8dp">
 
-                </com.google.android.material.card.MaterialCardView>
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/nightcitylightsstreet4kca" />
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/embroideryArt"
-                    android:layout_width="150dp"
-                    android:layout_height="100dp"
-                    android:layout_marginEnd="8dp"
-                    android:backgroundTint="@color/cream"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:cardCornerRadius="8dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|start"
+                            android:layout_margin="4dp"
+                            android:fontFamily="@font/leaguespartanregular"
+                            android:text="Night Escape"
+                            android:textColor="@color/cream"
+                            android:textStyle="bold" />
 
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/embroideryart" />
+                    </com.google.android.material.card.MaterialCardView>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom|start"
-                        android:layout_margin="4dp"
-                        android:fontFamily="@font/leaguespartanregular"
-                        android:text="Embroidery Art"
-                        android:textColor="@color/cream"
-                        android:textStyle="bold" />
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/embroideryArt"
+                        android:layout_width="150dp"
+                        android:layout_height="100dp"
+                        android:layout_marginEnd="8dp"
+                        android:backgroundTint="@color/cream"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:cardCornerRadius="8dp">
 
-                </com.google.android.material.card.MaterialCardView>
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/embroideryart" />
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/pastelSkies"
-                    android:layout_width="150dp"
-                    android:layout_height="100dp"
-                    android:layout_marginEnd="8dp"
-                    android:backgroundTint="@color/cream"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:cardCornerRadius="8dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|start"
+                            android:layout_margin="4dp"
+                            android:fontFamily="@font/leaguespartanregular"
+                            android:text="Embroidery Art"
+                            android:textColor="@color/cream"
+                            android:textStyle="bold" />
 
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/pastelskies" />
+                    </com.google.android.material.card.MaterialCardView>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom|start"
-                        android:layout_margin="4dp"
-                        android:fontFamily="@font/leaguespartanregular"
-                        android:text="Pastel Skies"
-                        android:textColor="@color/cream"
-                        android:textStyle="bold" />
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/pastelSkies"
+                        android:layout_width="150dp"
+                        android:layout_height="100dp"
+                        android:layout_marginEnd="8dp"
+                        android:backgroundTint="@color/cream"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:cardCornerRadius="8dp">
 
-                </com.google.android.material.card.MaterialCardView>
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/pastelskies" />
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/moodyForests"
-                    android:layout_width="150dp"
-                    android:layout_height="100dp"
-                    android:layout_marginEnd="8dp"
-                    android:backgroundTint="@color/cream"
-                    android:clickable="true"
-                    android:focusable="true"
-                    app:cardCornerRadius="8dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|start"
+                            android:layout_margin="4dp"
+                            android:fontFamily="@font/leaguespartanregular"
+                            android:text="Pastel Skies"
+                            android:textColor="@color/cream"
+                            android:textStyle="bold" />
 
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/moodyforests" />
+                    </com.google.android.material.card.MaterialCardView>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom|start"
-                        android:layout_margin="4dp"
-                        android:fontFamily="@font/leaguespartanregular"
-                        android:text="Moody Forests"
-                        android:textColor="@color/cream"
-                        android:textStyle="bold" />
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/moodyForests"
+                        android:layout_width="150dp"
+                        android:layout_height="100dp"
+                        android:layout_marginEnd="8dp"
+                        android:backgroundTint="@color/cream"
+                        android:clickable="true"
+                        android:focusable="true"
+                        app:cardCornerRadius="8dp">
 
-                </com.google.android.material.card.MaterialCardView>
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/moodyforests" />
 
-            </LinearLayout>
-        </HorizontalScrollView>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|start"
+                            android:layout_margin="4dp"
+                            android:fontFamily="@font/leaguespartanregular"
+                            android:text="Moody Forests"
+                            android:textColor="@color/cream"
+                            android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/newAdd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:fontFamily="@font/leaguespartanregular"
-            android:text="Newly Added"
-            android:textColor="@color/tan"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/scroll" />
+                    </com.google.android.material.card.MaterialCardView>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="12dp"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/newAdd" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
 
-</FrameLayout>
+            <TextView
+                android:id="@+id/newAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:fontFamily="@font/leaguespartanregular"
+                android:text="Newly Added"
+                android:textColor="@color/tan"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="true"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
