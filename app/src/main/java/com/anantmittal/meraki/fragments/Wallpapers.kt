@@ -3,7 +3,6 @@ package com.anantmittal.meraki.fragments
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,15 +10,16 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.anantmittal.meraki.data_modals.OwnerData
 import com.anantmittal.meraki.R
-import com.anantmittal.meraki.api.RetrofitBuilder
 import com.anantmittal.meraki.adapters.WallpaperAdapter
+import com.anantmittal.meraki.api.RetrofitBuilder
 import com.anantmittal.meraki.api.api_data_modals.WallpaperData
 import com.anantmittal.meraki.api.api_data_modals.WallpaperDataItem
+import com.anantmittal.meraki.data_modals.OwnerData
 import com.anantmittal.meraki.databinding.FragmentWallpapersBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -71,7 +71,7 @@ class Wallpapers : Fragment() {
                 override fun handleOnBackPressed() {
                     if (isSearching) {
                         isSearching = false
-                        binding.searchWallpaper.text?.clear()
+                        binding.searchWallpaper.setText("")
                         wallpaperList.clear()
                         fetchWallpapers(1)
                     } else {
