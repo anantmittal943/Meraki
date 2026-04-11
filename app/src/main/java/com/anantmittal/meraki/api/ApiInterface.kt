@@ -5,28 +5,27 @@ import com.anantmittal.meraki.api.api_data_modals.WallpaperData
 import com.anantmittal.meraki.api.api_data_modals.WallpaperDataItem
 import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.Headers
+import retrofit2.http.Header
 import retrofit2.http.Query
 
 //https://api.unsplash.com/photos?client_id=F_S8mDPxMVJX4n4ohON-yDbyXZt9pKYP8Re923IpvEE&page=1
 const val BASE_URL = "https://api.unsplash.com/"
-const val client_id = BuildConfig.client_id
 
 interface ApiInterface {
-    @Headers("Authorization: Client-ID $client_id")
     @GET("/photos")
     fun data(
         @Query("page") page: Int,
         @Query("per_page") perPage: Int,
-        @Query("orientation") orientation: String
+        @Query("orientation") orientation: String,
+        @Header("Authorization") authorization: String = "Client-ID ${BuildConfig.client_id}"
     ): Call<List<WallpaperDataItem>>
 
-    @Headers("Authorization: Client-ID $client_id")
     @GET("/search/photos")
     fun searchData(
         @Query("query") query: String,
         @Query("page") page: Int,
         @Query("per_page") perPage: Int,
-        @Query("orientation") orientation: String
+        @Query("orientation") orientation: String,
+        @Header("Authorization") authorization: String = "Client-ID ${BuildConfig.client_id}"
     ): Call<WallpaperData>
 }
