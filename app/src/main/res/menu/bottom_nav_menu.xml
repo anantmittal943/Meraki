@@ -18,5 +18,5 @@
     <item
         android:id="@+id/profile"
         android:icon="@drawable/profile"
-        android:title="@string/my_zedge" />
+        android:title="@string/my_meraki" />
 </menu>
