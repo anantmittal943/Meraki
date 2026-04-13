@@ -9,17 +9,17 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.FileProvider
-import com.anantmittal.meraki.data_modals.OwnerData
+import androidx.fragment.app.Fragment
 import com.anantmittal.meraki.R
-import com.anantmittal.meraki.databinding.FragmentSetWallpaperBinding
+import com.anantmittal.meraki.data_modals.OwnerData
 import com.anantmittal.meraki.data_modals.refUrl
+import com.anantmittal.meraki.databinding.FragmentSetWallpaperBinding
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
@@ -36,6 +36,12 @@ import java.io.IOException
 
 
 class SetWallpaper : Fragment() {
+
+    companion object {
+        const val ARG_IMAGE_URI = "arg_image_uri"
+        const val ARG_OWNER_USERNAME = "arg_owner_username"
+        const val ARG_OWNER_PROFILE_URL = "arg_owner_profile_url"
+    }
 
     private lateinit var binding: FragmentSetWallpaperBinding
     private lateinit var firebaseAuth: FirebaseAuth
@@ -56,22 +62,24 @@ class SetWallpaper : Fragment() {
         database = FirebaseDatabase.getInstance(refUrl)
 
 
-        ownerData = arguments?.getSerializable("data") as OwnerData
-//        Log.d(TAG, "onCreateView: ${ownerData.uri} ${ownerData.ownerUserName} ${ownerData.ownerProfileUrl}")
-//        ownerUsername = arguments?.getString("ownerUsername")
-//        val ownerName = arguments?.getString("ownerName", "Unknown")
-//        ownerProfileUrl = arguments?.getString("ownerProfileUrl")
+        val imageUriArg = arguments?.getString(ARG_IMAGE_URI)
+        val ownerUsernameArg = arguments?.getString(ARG_OWNER_USERNAME)
+        val ownerProfileUrlArg = arguments?.getString(ARG_OWNER_PROFILE_URL)
+
+        if (imageUriArg.isNullOrBlank() || ownerUsernameArg.isNullOrBlank() || ownerProfileUrlArg.isNullOrBlank()) {
+            Toast.makeText(requireContext(), "Unable to open wallpaper", Toast.LENGTH_SHORT).show()
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+            return binding.root
+        }
+
+        ownerData = OwnerData(Uri.parse(imageUriArg), ownerUsernameArg, ownerProfileUrlArg)
 
         binding.ownerName.text = ownerData.ownerUserName
 
-        ownerData.ownerProfileUrl?.let {
-            Glide.with(requireContext()).load(it).placeholder(R.drawable.profile)
-                .error(R.drawable.profile).into(binding.ownerProfilePicture)
-        }
+        Glide.with(requireContext()).load(ownerData.ownerProfileUrl).placeholder(R.drawable.profile)
+            .error(R.drawable.profile).into(binding.ownerProfilePicture)
 
-        ownerData.uri?.let {
-            Glide.with(requireContext()).load(it).into(binding.photoPreview)
-        }
+        Glide.with(requireContext()).load(ownerData.uri).into(binding.photoPreview)
 
         binding.backButton.setOnClickListener {
             requireActivity().onBackPressedDispatcher.onBackPressed()
@@ -183,8 +191,8 @@ class SetWallpaper : Fragment() {
     }
 
     private fun downloadWallpaper() {
-        ownerData.uri.toString()?.let {
-            Glide.with(requireContext()).asBitmap().load(it).into(object : CustomTarget<Bitmap>() {
+        val imageUrl = ownerData.uri.toString()
+        Glide.with(requireContext()).asBitmap().load(imageUrl).into(object : CustomTarget<Bitmap>() {
                 override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                     try {
                         val fileName = "Wallpaper_${System.currentTimeMillis()}.png"
@@ -228,21 +236,19 @@ class SetWallpaper : Fragment() {
             }
             val wallpaperDownloadKey = downDatabaseReference.push().key
             if (wallpaperDownloadKey != null) {
-                downDatabaseReference.child(wallpaperDownloadKey).child("link").setValue(it)
+                downDatabaseReference.child(wallpaperDownloadKey).child("link").setValue(imageUrl)
                 downDatabaseReference.child(wallpaperDownloadKey).child("ownerUsername")
                     .setValue(ownerData.ownerUserName)
                 downDatabaseReference.child(wallpaperDownloadKey).child("ownerProfileUrl")
                     .setValue(ownerData.ownerProfileUrl)
             }
-        }
     }
 
     private fun setWallpaper(flag: Int) {
         try {
             val wallpaperManager = WallpaperManager.getInstance(requireContext())
-            ownerData.uri.toString()?.let {
-                Glide.with(requireContext()).asBitmap().load(ownerData.uri.toString())
-                    .into(object : CustomTarget<Bitmap>() {
+            Glide.with(requireContext()).asBitmap().load(ownerData.uri.toString())
+                .into(object : CustomTarget<Bitmap>() {
                         override fun onResourceReady(
                             resource: Bitmap, transition: Transition<in Bitmap>?
                         ) {
@@ -256,7 +262,6 @@ class SetWallpaper : Fragment() {
                         override fun onLoadCleared(placeholder: Drawable?) {}
 
                     })
-            }
         } catch (e: Exception) {
             Toast.makeText(
                 requireContext(), "Error Setting Wallpaper : ${e.message}", Toast.LENGTH_SHORT
@@ -265,8 +270,8 @@ class SetWallpaper : Fragment() {
     }
 
     private fun shareWallpaper() {
-        ownerData.uri.toString()?.let {
-            Glide.with(requireContext()).asBitmap().load(it).into(object : CustomTarget<Bitmap>() {
+        val imageUrl = ownerData.uri.toString()
+        Glide.with(requireContext()).asBitmap().load(imageUrl).into(object : CustomTarget<Bitmap>() {
                 override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                     try {
                         val file = File(requireContext().cacheDir, "shared_image.png")
@@ -297,7 +302,6 @@ class SetWallpaper : Fragment() {
                 override fun onLoadCleared(placeholder: Drawable?) {}
 
             })
-        }
     }
 
 }

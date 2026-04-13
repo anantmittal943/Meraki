@@ -3,18 +3,18 @@ package com.anantmittal.meraki.fragments
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.anantmittal.meraki.R
 import com.anantmittal.meraki.adapters.ImageAdapter
 import com.anantmittal.meraki.data_modals.OwnerData
-import com.anantmittal.meraki.R
-import com.anantmittal.meraki.databinding.FragmentFavouritesBinding
 import com.anantmittal.meraki.data_modals.refUrl
+import com.anantmittal.meraki.databinding.FragmentFavouritesBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -84,7 +84,9 @@ class Favourites : Fragment() {
         imageAdapter =
             ImageAdapter(list) { data ->
                 val bundle = Bundle().apply {
-                    putSerializable("data", data)
+                    putString(SetWallpaper.ARG_IMAGE_URI, data.uri.toString())
+                    putString(SetWallpaper.ARG_OWNER_USERNAME, data.ownerUserName)
+                    putString(SetWallpaper.ARG_OWNER_PROFILE_URL, data.ownerProfileUrl)
                 }
                 findNavController().navigate(R.id.action_favourites_to_setWallpaper, bundle)
             }

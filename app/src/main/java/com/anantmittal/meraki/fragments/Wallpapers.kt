@@ -31,10 +31,11 @@ class Wallpapers : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var wallpaperAdapter: WallpaperAdapter
     private val wallpaperList = mutableListOf<WallpaperDataItem>()
-    private val list = mutableListOf<OwnerData>()
     private var currentPage = 1
     private var isSearching = false
     private var isLoading = false
+    private var activeSearchCall: Call<WallpaperData>? = null
+    private var activeWallpapersCall: Call<List<WallpaperDataItem>>? = null
 
 
     override fun onCreateView(
@@ -49,13 +50,17 @@ class Wallpapers : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         recyclerView = binding.recyclerView
         recyclerView.layoutManager = GridLayoutManager(context, 3)
+        recyclerView.setHasFixedSize(true)
+        recyclerView.itemAnimator = null
+        recyclerView.setItemViewCacheSize(20)
         wallpaperAdapter = WallpaperAdapter(requireContext(), wallpaperList) { data ->
             val ownerData = OwnerData(
                 Uri.parse(data.urls.raw), data.user.username, data.user.profile_image.large
             )
-            list.add(ownerData)
             val bundle = Bundle().apply {
-                putSerializable("data", ownerData)
+                putString(SetWallpaper.ARG_IMAGE_URI, ownerData.uri.toString())
+                putString(SetWallpaper.ARG_OWNER_USERNAME, ownerData.ownerUserName)
+                putString(SetWallpaper.ARG_OWNER_PROFILE_URL, ownerData.ownerProfileUrl)
             }
             findNavController().navigate(R.id.action_wallP_to_setWallpaper, bundle)
         }
@@ -71,8 +76,8 @@ class Wallpapers : Fragment() {
                 override fun handleOnBackPressed() {
                     if (isSearching) {
                         isSearching = false
+                        currentPage = 1
                         binding.searchWallpaper.setText("")
-                        wallpaperList.clear()
                         fetchWallpapers(1)
                     } else {
                         if (findNavController().currentDestination?.id == R.id.wallP) {
@@ -84,13 +89,15 @@ class Wallpapers : Fragment() {
                 }
             })
 
-        binding.searchWallpaper.setOnEditorActionListener { v, actionId, event ->
+        binding.searchWallpaper.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 val query = binding.searchWallpaper.text.toString().trim()
+                currentPage = 1
                 if (query.isNotEmpty()) {
                     isSearching = true
                     searchWallpapers(1, query)
                 } else {
+                    isSearching = false
                     fetchWallpapers(1)
                 }
 
@@ -110,8 +117,9 @@ class Wallpapers : Fragment() {
                 val visibleItemCount = layoutManager.childCount
                 val totalItemCount = layoutManager.itemCount
                 val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
+                val threshold = 6
 
-                if (!isLoading && (visibleItemCount + firstVisibleItemPosition) >= totalItemCount && firstVisibleItemPosition >= 0) {
+                if (dy > 0 && !isLoading && (visibleItemCount + firstVisibleItemPosition) >= (totalItemCount - threshold) && firstVisibleItemPosition >= 0) {
                     currentPage++
                     if (isSearching) {
                         val query = binding.searchWallpaper.text.toString().trim()
@@ -134,58 +142,80 @@ class Wallpapers : Fragment() {
     }
 
     private fun searchWallpapers(page: Int, query: String) {
+        activeSearchCall?.cancel()
+        activeWallpapersCall?.cancel()
         isLoading = true
-        RetrofitBuilder.instance.searchData(query, page, 30, "portrait")
-            .enqueue(object : Callback<WallpaperData> {
+        activeSearchCall = RetrofitBuilder.instance.searchData(query, page, 30, "portrait")
+        activeSearchCall?.enqueue(object : Callback<WallpaperData> {
                 override fun onResponse(
                     call: Call<WallpaperData>, response: Response<WallpaperData>
                 ) {
                     if (response.isSuccessful && response.body() != null) {
                         val searchResult = response.body()!!.results
-                        if (page == 1) {
-                            wallpaperList.clear()
-                        }
-                        wallpaperList.addAll(searchResult)
-                        isLoading = false
-                        wallpaperAdapter.notifyDataSetChanged()
+                        updateWallpaperList(searchResult, page == 1)
                     } else {
+                        if (page > 1) currentPage--
                         Toast.makeText(context, "No results found", Toast.LENGTH_SHORT).show()
                     }
                     isLoading = false
                 }
 
                 override fun onFailure(call: Call<WallpaperData>, t: Throwable) {
-                    t.printStackTrace()
+                    if (call.isCanceled) return
+                    if (page > 1) currentPage--
                     isLoading = false
                 }
             })
     }
 
     private fun fetchWallpapers(page: Int) {
+        activeWallpapersCall?.cancel()
+        activeSearchCall?.cancel()
         isLoading = true
-        RetrofitBuilder.instance.data(page, 30, "portrait")
-            .enqueue(object : Callback<List<WallpaperDataItem>> {
+        activeWallpapersCall = RetrofitBuilder.instance.data(page, 30, "portrait")
+        activeWallpapersCall?.enqueue(object : Callback<List<WallpaperDataItem>> {
                 override fun onResponse(
                     call: Call<List<WallpaperDataItem>>, response: Response<List<WallpaperDataItem>>
                 ) {
                     if (response.isSuccessful && response.body() != null) {
                         val photoList = response.body()!!
-//                        wallpaperList.clear()
-                        wallpaperList.addAll(photoList)
-                        isLoading = false
-                        wallpaperAdapter.notifyDataSetChanged()
+                        updateWallpaperList(photoList, page == 1)
                     } else {
+                        if (page > 1) currentPage--
                         Toast.makeText(context, "response nhi aaya", Toast.LENGTH_SHORT).show()
                     }
                     isLoading = false
                 }
 
                 override fun onFailure(call: Call<List<WallpaperDataItem>>, t: Throwable) {
-                    t.printStackTrace()
+                    if (call.isCanceled) return
+                    if (page > 1) currentPage--
                     isLoading = false
                 }
 
             })
+    }
+
+    private fun updateWallpaperList(items: List<WallpaperDataItem>, reset: Boolean) {
+        if (reset) {
+            val oldSize = wallpaperList.size
+            wallpaperList.clear()
+            if (oldSize > 0) {
+                wallpaperAdapter.notifyItemRangeRemoved(0, oldSize)
+            }
+        }
+
+        if (items.isEmpty()) return
+
+        val insertStart = wallpaperList.size
+        wallpaperList.addAll(items)
+        wallpaperAdapter.notifyItemRangeInserted(insertStart, items.size)
+    }
+
+    override fun onDestroyView() {
+        activeSearchCall?.cancel()
+        activeWallpapersCall?.cancel()
+        super.onDestroyView()
     }
 
 }
