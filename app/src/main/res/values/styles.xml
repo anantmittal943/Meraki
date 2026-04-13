@@ -1,0 +1,45 @@
+<resources>
+
+    <style name="Widget.Meraki.Toolbar" parent="Widget.Material3.Toolbar">
+        <item name="android:background">?attr/colorSurface</item>
+        <item name="titleTextColor">?attr/colorOnSurface</item>
+        <item name="subtitleTextColor">?attr/colorOnSurfaceVariant</item>
+        <item name="navigationIconTint">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="Widget.Meraki.FilterChip" parent="Widget.Material3.Chip.Assist.Elevated">
+        <item name="chipBackgroundColor">?attr/colorSurfaceVariant</item>
+        <item name="chipStrokeColor">?attr/colorOutline</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="chipMinHeight">40dp</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="chipIconTint">?attr/colorPrimary</item>
+    </style>
+
+    <style name="Widget.Meraki.TabLayout" parent="Widget.Material3.TabLayout">
+        <item name="tabIndicatorColor">?attr/colorPrimary</item>
+        <item name="tabIndicatorHeight">3dp</item>
+        <item name="tabSelectedTextColor">?attr/colorOnSurface</item>
+        <item name="tabTextColor">?attr/colorOnSurfaceVariant</item>
+        <item name="tabRippleColor">?attr/colorSecondaryContainer</item>
+    </style>
+
+    <style name="Widget.Meraki.BottomNav" parent="Widget.Material3.BottomNavigationView">
+        <item name="itemIconTint">@color/bottom_nav_item_tint</item>
+        <item name="itemTextColor">@color/bottom_nav_item_tint</item>
+        <item name="itemActiveIndicatorStyle">@style/Widget.Meraki.BottomNav.ActiveIndicator</item>
+        <item name="labelVisibilityMode">labeled</item>
+    </style>
+
+    <style name="Widget.Meraki.BottomNav.ActiveIndicator">
+        <item name="android:color">?attr/colorSecondaryContainer</item>
+        <item name="android:width">64dp</item>
+        <item name="android:height">32dp</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.Meraki.Pill</item>
+    </style>
+
+    <style name="ShapeAppearance.Meraki.Pill" parent="ShapeAppearance.Material3.Corner.None">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+</resources>

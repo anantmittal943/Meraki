@@ -6,8 +6,17 @@
         android:title="@string/wallpapers" />
 
     <item
+        android:id="@+id/ringtones"
+        android:icon="@drawable/more_horizontal"
+        android:title="@string/ringtones" />
+
+    <item
+        android:id="@+id/aiGenerator"
+        android:icon="@drawable/logo"
+        android:title="@string/ai_generator" />
+
+    <item
         android:id="@+id/profile"
         android:icon="@drawable/profile"
-        android:title="@string/profile" />
-
+        android:title="@string/my_zedge" />
 </menu>

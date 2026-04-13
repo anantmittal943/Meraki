@@ -49,7 +49,7 @@ class Wallpapers : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recyclerView = binding.recyclerView
-        recyclerView.layoutManager = GridLayoutManager(context, 3)
+        recyclerView.layoutManager = GridLayoutManager(context, 2)
         recyclerView.setHasFixedSize(true)
         recyclerView.itemAnimator = null
         recyclerView.setItemViewCacheSize(20)

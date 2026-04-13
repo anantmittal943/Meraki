@@ -20,6 +20,19 @@
             android:id="@+id/action_wallP_to_searchResults"
             app:destination="@id/searchResults" />
     </fragment>
+
+    <fragment
+        android:id="@+id/ringtones"
+        android:name="com.anantmittal.meraki.fragments.Ringtones"
+        android:label="fragment_ringtones"
+        tools:layout="@layout/fragment_ringtones" />
+
+    <fragment
+        android:id="@+id/aiGenerator"
+        android:name="com.anantmittal.meraki.fragments.AiGenerator"
+        android:label="fragment_ai_generator"
+        tools:layout="@layout/fragment_ai_generator" />
+
     <fragment
         android:id="@+id/profile"
         android:name="com.anantmittal.meraki.fragments.Profile"
@@ -41,15 +54,13 @@
             android:id="@+id/action_profile_to_favourites"
             app:destination="@id/favourites" />
     </fragment>
+
     <fragment
         android:id="@+id/setWallpaper"
         android:name="com.anantmittal.meraki.fragments.SetWallpaper"
         android:label="fragment_set_wallpaper"
-        tools:layout="@layout/fragment_set_wallpaper">
-        <!--<argument
-            android:name="photoUrl"
-            app:argType="string" />-->
-    </fragment>
+        tools:layout="@layout/fragment_set_wallpaper" />
+
     <fragment
         android:id="@+id/uploads2"
         android:name="com.anantmittal.meraki.fragments.Uploads"
@@ -59,34 +70,39 @@
             android:id="@+id/action_uploads2_to_setWallpaper"
             app:destination="@id/setWallpaper" />
     </fragment>
+
     <fragment
         android:id="@+id/downloads2"
         android:name="com.anantmittal.meraki.fragments.Downloads"
         android:label="fragment_downloads"
-        tools:layout="@layout/fragment_downloads" >
+        tools:layout="@layout/fragment_downloads">
         <action
             android:id="@+id/action_downloads2_to_setWallpaper"
             app:destination="@id/setWallpaper" />
     </fragment>
+
     <fragment
         android:id="@+id/termsAndCondition"
         android:name="com.anantmittal.meraki.fragments.TermsAndCondition"
         android:label="fragment_terms_and_condition"
         tools:layout="@layout/fragment_terms_and_condition" />
+
     <fragment
         android:id="@+id/privacyPolicy"
         android:name="com.anantmittal.meraki.fragments.PrivacyPolicy"
         android:label="fragment_privacy_policy"
         tools:layout="@layout/fragment_privacy_policy" />
+
     <fragment
         android:id="@+id/favourites"
         android:name="com.anantmittal.meraki.fragments.Favourites"
         android:label="fragment_favourites"
-        tools:layout="@layout/fragment_favourites" >
+        tools:layout="@layout/fragment_favourites">
         <action
             android:id="@+id/action_favourites_to_setWallpaper"
             app:destination="@id/setWallpaper" />
     </fragment>
+
     <fragment
         android:id="@+id/searchResults"
         android:name="com.anantmittal.meraki.fragments.SearchResults"

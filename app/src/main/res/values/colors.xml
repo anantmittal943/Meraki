@@ -2,9 +2,71 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Existing brand palette (preserved) -->
     <color name="tan">#B68D40</color>
     <color name="cream">#F4EBD0</color>
     <color name="charcoal">#122620</color>
     <color name="gold">#D6AD60</color>
     <color name="teal">#1A8F8F</color>
+
+    <!-- Material 3 semantic colors: light -->
+    <color name="md_theme_light_primary">@color/gold</color>
+    <color name="md_theme_light_onPrimary">@color/charcoal</color>
+    <color name="md_theme_light_primaryContainer">@color/tan</color>
+    <color name="md_theme_light_onPrimaryContainer">@color/charcoal</color>
+
+    <color name="md_theme_light_secondary">@color/teal</color>
+    <color name="md_theme_light_onSecondary">@color/cream</color>
+    <color name="md_theme_light_secondaryContainer">@color/cream</color>
+    <color name="md_theme_light_onSecondaryContainer">@color/charcoal</color>
+
+    <color name="md_theme_light_tertiary">@color/tan</color>
+    <color name="md_theme_light_onTertiary">@color/charcoal</color>
+    <color name="md_theme_light_tertiaryContainer">@color/gold</color>
+    <color name="md_theme_light_onTertiaryContainer">@color/charcoal</color>
+
+    <color name="md_theme_light_error">#B3261E</color>
+    <color name="md_theme_light_onError">@color/white</color>
+    <color name="md_theme_light_errorContainer">#F9DEDC</color>
+    <color name="md_theme_light_onErrorContainer">#410E0B</color>
+
+    <color name="md_theme_light_background">@color/cream</color>
+    <color name="md_theme_light_onBackground">@color/charcoal</color>
+    <color name="md_theme_light_surface">@color/cream</color>
+    <color name="md_theme_light_onSurface">@color/charcoal</color>
+    <color name="md_theme_light_surfaceVariant">#E8DFC8</color>
+    <color name="md_theme_light_onSurfaceVariant">#3D433F</color>
+    <color name="md_theme_light_outline">#6D746C</color>
+    <color name="md_theme_light_outlineVariant">#C8CFBE</color>
+
+    <!-- Material 3 semantic colors: dark -->
+    <color name="md_theme_dark_primary">@color/gold</color>
+    <color name="md_theme_dark_onPrimary">@color/charcoal</color>
+    <color name="md_theme_dark_primaryContainer">#5C4520</color>
+    <color name="md_theme_dark_onPrimaryContainer">@color/cream</color>
+
+    <color name="md_theme_dark_secondary">@color/teal</color>
+    <color name="md_theme_dark_onSecondary">@color/charcoal</color>
+    <color name="md_theme_dark_secondaryContainer">#1D3B3B</color>
+    <color name="md_theme_dark_onSecondaryContainer">#C8F2F2</color>
+
+    <color name="md_theme_dark_tertiary">@color/tan</color>
+    <color name="md_theme_dark_onTertiary">@color/charcoal</color>
+    <color name="md_theme_dark_tertiaryContainer">#47351A</color>
+    <color name="md_theme_dark_onTertiaryContainer">#FCEBC9</color>
+
+    <color name="md_theme_dark_error">#F2B8B5</color>
+    <color name="md_theme_dark_onError">#601410</color>
+    <color name="md_theme_dark_errorContainer">#8C1D18</color>
+    <color name="md_theme_dark_onErrorContainer">#F9DEDC</color>
+
+    <color name="md_theme_dark_background">@color/charcoal</color>
+    <color name="md_theme_dark_onBackground">@color/cream</color>
+    <color name="md_theme_dark_surface">@color/charcoal</color>
+    <color name="md_theme_dark_onSurface">@color/cream</color>
+    <color name="md_theme_dark_surfaceVariant">#2A3A35</color>
+    <color name="md_theme_dark_onSurfaceVariant">#C1C9BC</color>
+    <color name="md_theme_dark_outline">#8B9388</color>
+    <color name="md_theme_dark_outlineVariant">#414941</color>
 </resources>
