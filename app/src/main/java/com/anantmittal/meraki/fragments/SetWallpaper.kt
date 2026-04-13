@@ -16,6 +16,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.anantmittal.meraki.R
 import com.anantmittal.meraki.data_modals.OwnerData
 import com.anantmittal.meraki.data_modals.refUrl
@@ -68,11 +69,16 @@ class SetWallpaper : Fragment() {
 
         if (imageUriArg.isNullOrBlank() || ownerUsernameArg.isNullOrBlank() || ownerProfileUrlArg.isNullOrBlank()) {
             Toast.makeText(requireContext(), "Unable to open wallpaper", Toast.LENGTH_SHORT).show()
-            requireActivity().onBackPressedDispatcher.onBackPressed()
+            // Post navigation so we don't re-enter FragmentManager while this transaction is executing.
+            binding.root.post {
+                if (isAdded) {
+                    findNavController().popBackStack()
+                }
+            }
             return binding.root
         }
 
-        ownerData = OwnerData(Uri.parse(imageUriArg), ownerUsernameArg, ownerProfileUrlArg)
+        ownerData = OwnerData(imageUriArg, ownerUsernameArg, ownerProfileUrlArg)
 
         binding.ownerName.text = ownerData.ownerUserName
 
@@ -82,7 +88,7 @@ class SetWallpaper : Fragment() {
         Glide.with(requireContext()).load(ownerData.uri).into(binding.photoPreview)
 
         binding.backButton.setOnClickListener {
-            requireActivity().onBackPressedDispatcher.onBackPressed()
+            findNavController().popBackStack()
         }
 
         binding.photoPreview.setOnClickListener {
@@ -113,7 +119,7 @@ class SetWallpaper : Fragment() {
         favDatabaseReference.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (data in snapshot.children) {
-                    if (ownerData.uri.toString() == data.child("link")
+                    if (ownerData.uri == data.child("link")
                             .getValue(String::class.java)
                     ) {
                         isFav = data.child("isFav").getValue(Boolean::class.java) ?: false
@@ -140,7 +146,7 @@ class SetWallpaper : Fragment() {
                     favKey = favDatabaseReference.push().key
                 }
                 favKey?.let {
-                    favDatabaseReference.child(it).child("link").setValue(ownerData.uri.toString())
+                    favDatabaseReference.child(it).child("link").setValue(ownerData.uri)
                     favDatabaseReference.child(it).child("ownerUsername")
                         .setValue(ownerData.ownerUserName)
                     favDatabaseReference.child(it).child("ownerProfileUrl")
@@ -191,7 +197,7 @@ class SetWallpaper : Fragment() {
     }
 
     private fun downloadWallpaper() {
-        val imageUrl = ownerData.uri.toString()
+        val imageUrl = ownerData.uri
         Glide.with(requireContext()).asBitmap().load(imageUrl).into(object : CustomTarget<Bitmap>() {
                 override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                     try {
@@ -247,7 +253,7 @@ class SetWallpaper : Fragment() {
     private fun setWallpaper(flag: Int) {
         try {
             val wallpaperManager = WallpaperManager.getInstance(requireContext())
-            Glide.with(requireContext()).asBitmap().load(ownerData.uri.toString())
+            Glide.with(requireContext()).asBitmap().load(ownerData.uri)
                 .into(object : CustomTarget<Bitmap>() {
                         override fun onResourceReady(
                             resource: Bitmap, transition: Transition<in Bitmap>?
@@ -270,7 +276,7 @@ class SetWallpaper : Fragment() {
     }
 
     private fun shareWallpaper() {
-        val imageUrl = ownerData.uri.toString()
+        val imageUrl = ownerData.uri
         Glide.with(requireContext()).asBitmap().load(imageUrl).into(object : CustomTarget<Bitmap>() {
                 override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                     try {

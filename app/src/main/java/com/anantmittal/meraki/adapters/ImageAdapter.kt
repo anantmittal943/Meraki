@@ -1,12 +1,11 @@
 package com.anantmittal.meraki.adapters
 
-import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.anantmittal.meraki.data_modals.OwnerData
 import com.anantmittal.meraki.activities.TAG
+import com.anantmittal.meraki.data_modals.OwnerData
 import com.anantmittal.meraki.databinding.WallpaperLayoutBinding
 import com.bumptech.glide.Glide
 
@@ -33,7 +32,7 @@ class ImageAdapter(
 
     inner class ImageViewHolder(private val binding: WallpaperLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(uri: Uri, ownerName: String, profileImageUrl: String) {
+        fun bind(uri: String, ownerName: String, profileImageUrl: String) {
             Log.d(TAG, "bind: $uri $ownerName $profileImageUrl")
             Glide.with(binding.wall1.context).load(uri).into(binding.wall1)
             binding.wall1.setOnClickListener { onClick(OwnerData(uri, ownerName, profileImageUrl)) }

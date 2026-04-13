@@ -1,7 +1,6 @@
 package com.anantmittal.meraki.fragments
 
 import android.content.Context
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,7 +18,6 @@ import com.anantmittal.meraki.adapters.WallpaperAdapter
 import com.anantmittal.meraki.api.RetrofitBuilder
 import com.anantmittal.meraki.api.api_data_modals.WallpaperData
 import com.anantmittal.meraki.api.api_data_modals.WallpaperDataItem
-import com.anantmittal.meraki.data_modals.OwnerData
 import com.anantmittal.meraki.databinding.FragmentWallpapersBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -54,13 +52,10 @@ class Wallpapers : Fragment() {
         recyclerView.itemAnimator = null
         recyclerView.setItemViewCacheSize(20)
         wallpaperAdapter = WallpaperAdapter(requireContext(), wallpaperList) { data ->
-            val ownerData = OwnerData(
-                Uri.parse(data.urls.raw), data.user.username, data.user.profile_image.large
-            )
             val bundle = Bundle().apply {
-                putString(SetWallpaper.ARG_IMAGE_URI, ownerData.uri.toString())
-                putString(SetWallpaper.ARG_OWNER_USERNAME, ownerData.ownerUserName)
-                putString(SetWallpaper.ARG_OWNER_PROFILE_URL, ownerData.ownerProfileUrl)
+                putString(SetWallpaper.ARG_IMAGE_URI, data.urls.raw)
+                putString(SetWallpaper.ARG_OWNER_USERNAME, data.user.username)
+                putString(SetWallpaper.ARG_OWNER_PROFILE_URL, data.user.profile_image.large)
             }
             findNavController().navigate(R.id.action_wallP_to_setWallpaper, bundle)
         }

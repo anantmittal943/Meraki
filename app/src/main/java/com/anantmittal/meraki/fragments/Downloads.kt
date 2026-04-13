@@ -1,6 +1,5 @@
 package com.anantmittal.meraki.fragments
 
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -61,7 +60,7 @@ class Downloads : Fragment() {
                     val ownerUsername = data.child("ownerUsername").getValue(String::class.java)
                     val ownerProfileUrl = data.child("ownerProfileUrl").getValue(String::class.java)
                     if (imageUrl != null && ownerUsername != null && ownerProfileUrl != null) {
-                        list.add(OwnerData(Uri.parse(imageUrl), ownerUsername, ownerProfileUrl))
+                        list.add(OwnerData(imageUrl, ownerUsername, ownerProfileUrl))
                     }
                 }
                 imageAdapter.notifyDataSetChanged()
@@ -80,7 +79,7 @@ class Downloads : Fragment() {
         imageAdapter =
             ImageAdapter(list) { data ->
                 val bundle = Bundle().apply {
-                    putString(SetWallpaper.ARG_IMAGE_URI, data.uri.toString())
+                    putString(SetWallpaper.ARG_IMAGE_URI, data.uri)
                     putString(SetWallpaper.ARG_OWNER_USERNAME, data.ownerUserName)
                     putString(SetWallpaper.ARG_OWNER_PROFILE_URL, data.ownerProfileUrl)
                 }

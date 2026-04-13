@@ -62,7 +62,7 @@ class Uploads : Fragment() {
             registerForActivityResult(ActivityResultContracts.GetMultipleContents()) { uris: List<Uri>? ->
                 if (!uris.isNullOrEmpty()) {
                     for (uri in uris) {
-                        list.add(OwnerData(uri, "ownerUsername", "profileImagesUrl"))
+                        list.add(OwnerData(uri.toString(), "ownerUsername", "profileImagesUrl"))
                         updateWallpaperToDatabase(uri)
                     }
                     imageAdapter.notifyDataSetChanged()
@@ -100,7 +100,7 @@ class Uploads : Fragment() {
                 for (data in snapshot.children) {
                     val imageUrl = data.getValue(String::class.java)
                     if (imageUrl != null) {
-                        list.add(OwnerData(Uri.parse(imageUrl), ownerUsername, profileImagesUrl))
+                        list.add(OwnerData(imageUrl, ownerUsername, profileImagesUrl))
                         /*imageUris.add(Uri.parse(imageUrl))
                         ownerNames.add(ownerUsername)
                         profileImages.add(profileImagesUrl)*/
@@ -135,7 +135,7 @@ class Uploads : Fragment() {
 
         imageAdapter = ImageAdapter(list) {data ->
             val bundle = Bundle().apply {
-                putString(SetWallpaper.ARG_IMAGE_URI, data.uri.toString())
+                putString(SetWallpaper.ARG_IMAGE_URI, data.uri)
                 putString(SetWallpaper.ARG_OWNER_USERNAME, data.ownerUserName)
                 putString(SetWallpaper.ARG_OWNER_PROFILE_URL, data.ownerProfileUrl)
                 /*putString("ownerUsername", data.ownerName)
