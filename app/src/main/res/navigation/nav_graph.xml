@@ -31,7 +31,11 @@
         android:id="@+id/aiGenerator"
         android:name="com.anantmittal.meraki.fragments.AiGenerator"
         android:label="fragment_ai_generator"
-        tools:layout="@layout/fragment_ai_generator" />
+        tools:layout="@layout/fragment_ai_generator">
+        <action
+            android:id="@+id/action_aiGenerator_to_setWallpaper"
+            app:destination="@id/setWallpaper" />
+    </fragment>
 
     <fragment
         android:id="@+id/profile"
@@ -53,6 +57,9 @@
         <action
             android:id="@+id/action_profile_to_favourites"
             app:destination="@id/favourites" />
+        <action
+            android:id="@+id/action_profile_to_settings"
+            app:destination="@id/settings" />
     </fragment>
 
     <fragment
@@ -108,4 +115,9 @@
         android:name="com.anantmittal.meraki.fragments.SearchResults"
         android:label="fragment_search_results"
         tools:layout="@layout/fragment_search_results" />
+    <fragment
+        android:id="@+id/settings"
+        android:name="com.anantmittal.meraki.fragments.Settings"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>
